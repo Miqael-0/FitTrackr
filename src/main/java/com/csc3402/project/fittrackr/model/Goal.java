@@ -17,6 +17,9 @@ public class Goal {
     @Column(name="end_date")
     private String endDate;
 
+    @OneToMany(mappedBy= "goal", cascade=CascadeType.ALL)
+    private Set <User> users;
+   
     public Goal() {
     }
 
@@ -51,7 +54,9 @@ public class Goal {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
-
+    /** public void Set<User> getUsers(){
+      return users;
+   } **/
     @Override
     public String toString() {
         return "Goal{" +
