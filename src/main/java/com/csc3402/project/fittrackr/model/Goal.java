@@ -1,6 +1,9 @@
 package com.csc3402.project.fittrackr.model;
 
 import jakarta.persistence.*;
+
+import java.util.Set;
+
 @Entity
 public class Goal {
     @Id
@@ -18,7 +21,7 @@ public class Goal {
     private String endDate;
 
     @OneToMany(mappedBy= "goal", cascade=CascadeType.ALL)
-    private Set <User> users;
+    private Set<User> users;
    
     public Goal() {
     }

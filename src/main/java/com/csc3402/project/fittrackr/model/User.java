@@ -16,9 +16,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "gender")
     private String gender;
 
@@ -27,14 +24,6 @@ public class User {
 
     @Column(name = "height")
     private int height;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Goal> goals;
-
-    /**
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserWorkout> workouts;
-    */
 
     public Integer getUserId() {
         return userId;
@@ -84,14 +73,6 @@ public class User {
         this.height = height;
     }
 
-    public List<Goal> getGoals() {
-        return goals;
-    }
-
-    public void setGoals(List<Goal> goals) {
-        this.goals = goals;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -103,15 +84,5 @@ public class User {
                 ", height=" + height +
                 '}';
     }
-
-    /**
-    public List<UserWorkout> getWorkouts() {
-        return workouts;
-    }
-
-    public void setWorkouts(List<UserWorkout> workouts) {
-        this.workouts = workouts;
-    }
-    */
 
 }
