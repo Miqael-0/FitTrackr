@@ -25,6 +25,10 @@ public class User {
     @Column(name = "height")
     private int height;
 
+    @ManyToOne
+    @JoinColumn(name = "goal_id")
+    private Goal goal;
+
     public Integer getUserId() {
         return userId;
     }
@@ -71,6 +75,14 @@ public class User {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public Goal getGoal() {
+        return goal;
+    }
+
+    public void setGoal(Goal goal) {
+        this.goal = goal;
     }
 
     @Override
