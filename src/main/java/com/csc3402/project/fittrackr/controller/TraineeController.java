@@ -78,7 +78,7 @@ public class TraineeController {
         if (result.hasErrors()) {
             trainee.setTraineeId((int) id);
             //return html index
-            return "index";
+            return "list-trainee";
         }
 
         model.addAttribute("trainees", traineeRepository.findAll());
@@ -97,7 +97,7 @@ public class TraineeController {
 
     @GetMapping("delete/{id}")
     public String deleteTrainee(@PathVariable("id") long id, Model model) {
-       Trainee trainee = traineeRepository.findById((int) id)
+        Trainee trainee = traineeRepository.findById((int) id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Trainee Id:" + id));
         traineeRepository.delete(trainee);
         model.addAttribute("trainees", traineeRepository.findAll());
@@ -129,18 +129,19 @@ public class TraineeController {
                                      BindingResult result, Model model) {
         if (result.hasErrors()) {
             traineeWorkout.setId();
-            return "dashboard";
+            return "redirect:/trainees/assign";
         }
 
         Trainee trainee = traineeRepository.findTraineeById((int) id1);
         Workout workout = workoutRepository.findWorkoutById(work.getWorkoutId());
 
-        TraineeWorkout traineeWorkout1 = new TraineeWorkout(trainee,workout,date,weight,duration,caloriesBurned);
+        TraineeWorkout traineeWorkout1 = new TraineeWorkout(trainee, workout, date, weight, duration, caloriesBurned);
         traineeWorkoutRepository.save(traineeWorkout1);
 
-        return "dashboard";
+        return "redirect:/trainees/assign";
     }
-                           
+
+
     @GetMapping("display")
     public String displayTraineeWorkout(Model model) {
         model.addAttribute("trainees",traineeRepository.findAll());
