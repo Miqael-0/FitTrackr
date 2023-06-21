@@ -123,8 +123,8 @@ public class TraineeController {
     }
 
     @PostMapping("traineeworkout/{traineeid}")
-    public String updateTraineeWorkout(@PathVariable("traineeid") long id1, @Valid Workout work, @RequestParam String date,
-                                     @RequestParam double weight, @RequestParam int duration,@RequestParam double caloriesBurned,
+    public String updateStaffProject(@PathVariable("traineeid") long id1, @Valid Workout work, @RequestParam String date,
+                                     @RequestParam double weight, @RequestParam int duration, @RequestParam double caloriesBurned,
                                      @Valid TraineeWorkout traineeWorkout,
                                      BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -135,7 +135,7 @@ public class TraineeController {
         Trainee trainee = traineeRepository.findTraineeById((int) id1);
         Workout workout = workoutRepository.findWorkoutById(work.getWorkoutId());
 
-        TraineeWorkout traineeWorkout1= new TraineeWorkout(trainee,workout,date,weight,duration,caloriesBurned);
+        TraineeWorkout traineeWorkout1 = new TraineeWorkout(trainee,workout,date,weight,duration,caloriesBurned);
         traineeWorkoutRepository.save(traineeWorkout1);
 
         return "index";
@@ -152,7 +152,7 @@ public class TraineeController {
         List<TraineeWorkout> traineeWorkout = (List<TraineeWorkout>) traineeWorkoutRepository.findTraineeWorkoutByTraineeId((int) id);
         // .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("trainee",traineeRepository.findTraineeById((int)id));
-        model.addAttribute("traineeWorkout", traineeWorkout);
+        model.addAttribute("traineeWorkouts", traineeWorkout);
         return "display-workout";
     }
 

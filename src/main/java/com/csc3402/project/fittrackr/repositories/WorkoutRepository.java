@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface WorkoutRepository extends JpaRepository<Trainee, Integer> {
+public interface WorkoutRepository extends JpaRepository<Workout, Integer> {
     @Query(value = "SELECT * FROM workout where workout_id = :id", nativeQuery = true)
     Workout findWorkoutById(@Param("id") int id);
 }
