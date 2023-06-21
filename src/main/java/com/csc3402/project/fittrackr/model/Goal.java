@@ -21,16 +21,22 @@ public class Goal {
     private String endDate;
 
     @OneToMany(mappedBy= "goal", cascade=CascadeType.ALL)
-    private Set<User> users;
+    private Set<Trainee> trainees;
    
     public Goal() {
+    }
+
+    public Goal(String targetGoal, String startDate, String endDate) {
+        this.targetGoal = targetGoal;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public Integer getGoalId() {
         return goalId;
     }
 
-    public void setGoalsId(Integer goalId) {
+    public void setGoalId(Integer goalId) {
         this.goalId = goalId;
     }
 
@@ -57,14 +63,20 @@ public class Goal {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
-    /** public void Set<User> getUsers(){
-      return users;
-   } **/
+
+    public Set<Trainee> getTrainees() {
+        return trainees;
+    }
+
+    public void setTrainees(Set<Trainee> trainees) {
+        this.trainees = trainees;
+    }
+
     @Override
     public String toString() {
         return "Goal{" +
                 "goalId=" + goalId +
-                ", target='" + targetGoal + '\'' +
+                ", targetGoal='" + targetGoal + '\'' +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 '}';

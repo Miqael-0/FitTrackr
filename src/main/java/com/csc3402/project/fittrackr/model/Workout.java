@@ -11,17 +11,16 @@ public class Workout {
     @Column(name = "workout_id")
     private Integer workoutId;
 
-    @Column(name = "workout_Name")
+    @Column(name = "workout_name")
     private String workoutName;
 
     @OneToMany(mappedBy = "workout")
-    private Set<UserWorkout> userWorkouts = new HashSet<>();
+    private Set<TraineeWorkout> traineeWorkouts = new HashSet<>();
 
     public Workout() {
     }
 
-    public Workout(Integer workoutId, String workoutName) {
-        this.workoutId = workoutId;
+    public Workout(String workoutName) {
         this.workoutName = workoutName;
     }
 
@@ -45,7 +44,7 @@ public class Workout {
     public String toString() {
         return "Workout{" +
                 "workoutId=" + workoutId +
-                ", workoutName='" + workoutName + '\'' +
+                ", workoutName='" + workoutName +
                 '}';
     }
 }

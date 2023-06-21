@@ -6,28 +6,28 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class UserWorkoutId implements Serializable {
+public class TraineeWorkoutId implements Serializable {
 
-    @Column(name = "user_id")
-    private Integer userId;
+    @Column(name = "trainee_id")
+    private Integer traineeId;
 
     @Column(name = "workout_id")
     private Integer workoutId;
 
-    public UserWorkoutId() {
+    public TraineeWorkoutId() {
     }
 
-    public UserWorkoutId(Integer userId, Integer workoutId) {
-        this.userId = userId;
+    public TraineeWorkoutId(Integer traineeId, Integer workoutId) {
+        this.traineeId = traineeId;
         this.workoutId = workoutId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getTraineeId() {
+        return traineeId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setTraineeId(Integer traineeId) {
+        this.traineeId = traineeId;
     }
 
     public Integer getWorkoutId() {
@@ -42,12 +42,12 @@ public class UserWorkoutId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserWorkoutId that = (UserWorkoutId) o;
-        return Objects.equals(userId, that.userId) && Objects.equals(workoutId, that.workoutId);
+        TraineeWorkoutId that = (TraineeWorkoutId) o;
+        return Objects.equals(traineeId, that.traineeId) && Objects.equals(workoutId, that.workoutId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, workoutId);
+        return Objects.hash(traineeId, workoutId);
     }
 }

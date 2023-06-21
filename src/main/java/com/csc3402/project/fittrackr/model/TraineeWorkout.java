@@ -3,15 +3,15 @@ package com.csc3402.project.fittrackr.model;
 import jakarta.persistence.*;
 
 @Entity
-public class UserWorkout {
+public class TraineeWorkout {
 
     @EmbeddedId
-    private UserWorkoutId id;
+    private TraineeWorkoutId id;
 
     @ManyToOne
-    @MapsId("userId")
-    @JoinColumn(name = "user_id")
-    private User user;
+    @MapsId("traineeId")
+    @JoinColumn(name = "trainee_id")
+    private Trainee trainee;
 
     @ManyToOne
     @MapsId("workoutId")
@@ -30,12 +30,12 @@ public class UserWorkout {
     @Column(name = "calories_burned")
     private double caloriesBurned;
 
-    public UserWorkout() {
+    public TraineeWorkout() {
     }
 
-    public UserWorkout(User user, Workout workout, String date, double weight, int duration, double caloriesBurned) {
-        this.id = new UserWorkoutId(user.getUserId(), workout.getWorkoutId());
-        this.user = user;
+    public TraineeWorkout(Trainee trainee, Workout workout, String date, double weight, int duration, double caloriesBurned) {
+        this.id = new TraineeWorkoutId(trainee.getTraineeId(), workout.getWorkoutId());
+        this.trainee = trainee;
         this.workout = workout;
         this.date = date;
         this.weight = weight;
@@ -43,20 +43,20 @@ public class UserWorkout {
         this.caloriesBurned = caloriesBurned;
     }
 
-    public UserWorkoutId getId() {
+    public TraineeWorkoutId getId() {
         return id;
     }
 
-    public void setId(UserWorkoutId id) {
-        this.id = id;
+    public void setId() {
+        this.id = new TraineeWorkoutId(trainee.getTraineeId(),workout.getWorkoutId());;
     }
 
-    public User getUser() {
-        return user;
+    public Trainee getTrainee() {
+        return trainee;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setTrainee(Trainee trainee) {
+        this.trainee = trainee;
     }
 
     public Workout getWorkout() {
@@ -101,9 +101,9 @@ public class UserWorkout {
 
     @Override
     public String toString() {
-        return "UserWorkout{" +
+        return "TraineeWorkout{" +
                 "id=" + id +
-                ", user=" + user +
+                ", trainee=" + trainee +
                 ", workout=" + workout +
                 ", date='" + date + '\'' +
                 ", weight=" + weight +
