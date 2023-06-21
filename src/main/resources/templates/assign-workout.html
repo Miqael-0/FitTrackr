@@ -163,7 +163,9 @@
                                 </li>
                             </ul>
                             <div class="card mb-4">
-                                <h5 class="card-header" th:object="${trainee}">Assign Workout to Trainee: <span th:text="${trainee.firstName}"></span></h5>
+                                <tr th:object="${trainee}">
+                                    <h5 class="card-header">Assign Workout to Trainee: <span th:text="${trainee.firstName}"></span></h5>
+                                </tr>
                                 <div class="card-body">
                                     <form id="formAccountSettings" action="#" th:action="@{/trainees/traineeworkout/{traineeid}(traineeid=${trainee.traineeId})}"
                                           th:object="${traineeWorkout}" th:method="post">
@@ -217,15 +219,15 @@
                                         </div>
 
                                         <div class="form-floating">
-                                            <select class="form-select" id="work" aria-describedby="floatingWorkoutHelp" th:field="*{workout}"
-                                                    th:classappend="${#fields.hasErrors('workout')} ? 'is-invalid' : ''">
-                                                <option value="" th:disabled="disabled" th:selected="selected">Select workout</option>
+                                            <select class="form-select" id="floatingWorkout" aria-describedby="floatingWorkoutHelp"
+                                                    th:classappend="${#fields.hasErrors('workout')} ? 'is-invalid' : ''" th:field="*{workout}">
+                                                <option value="" th:disabled="disabled" th:selected="selected">Assign workout</option>
                                                 <option th:each="work: ${workouts}" th:value="${work.workoutId}"
-                                                        th:text="${work.workName}"/>
+                                                        th:text="${work.workoutName}"/>
                                             </select>
-                                            <label for="work" th:for="work">Workout</label>
+                                            <label for="floatingWorkout" th:for="floatingWorkout">Workout</label>
                                             <div id="floatingWorkoutHelp" class="form-text" style="margin-bottom: 8px;">
-                                                Select your workout.
+                                                Assign a workout.
                                             </div>
                                             <div class="invalid-feedback" th:if="${#fields.hasErrors('workout')}">
                                                 <span th:errors="${#fields.hasErrors('workout')}"></span>

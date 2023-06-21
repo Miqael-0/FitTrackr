@@ -1,10 +1,291 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="../templates/"
+        data-template="vertical-menu-template-free"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title>FitTrackr</title>
+    <meta name="description" content="" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" th:href="@{/vendor/fonts/boxicons.css}"  />
+    <!-- Core CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/css/core.css}" class="template-customizer-core-css" />
+    <link rel="stylesheet" th:href="@{/vendor/css/theme-default.css}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" th:href="@{/vendor/libs/perfect-scrollbar/perfect-scrollbar.css}" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script type="text/javascript" src="@{/vendor/js/helpers.js}"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script type="text/javascript" src="@{/js/config.js}"></script>
 </head>
 <body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <!-- Menu -->
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+            <div class="app-brand demo">
+                <a href="landing-page.html" class="app-brand-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-circle-square" viewbox="0 0 17.5 17.5">
+                        <path d="M0 6a6 6 0 1 1 12 0A6 6 0 0 1 0 6z" />
+                        <path d="M12.93 5h1.57a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1.57a6.953 6.953 0 0 1-1-.22v1.79A1.5 1.5 0 0 0 5.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 4h-1.79c.097.324.17.658.22 1z" />
+                    </svg>
+                    <span class="ms-1 fs-4">FitTrackr</span>
+                </a>
+                <a href="#" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                    <i class="bx bx-chevron-left bx-sm align-middle"></i>
+                </a>
+            </div>
+            <div class="menu-inner-shadow"></div>
+            <ul class="menu-inner py-1">
+                <!-- Dashboard -->
+                <li class="menu-item">
+                    <a href="#" th:href="@{/}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                        <div data-i18n="Dashboard">Dashboard</div>
+                    </a>
+                </li>
+                <!-- Trainee -->
+                <li class="menu-item">
+                    <a href="#" class="menu-link menu-toggle" id="traineeMenuToggle">
+                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                        <div data-i18n="Trainee Settings">Trainee</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="/trainees/list" class="menu-link">
+                                <div data-i18n="List of Trainees">List of Trainees</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/trainees/signup" class="menu-link">
+                                <div data-i18n="Add New Trainee">Add New Trainee</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/trainees/update" class="menu-link">
+                                <div data-i18n="Update Trainee">Update Trainee</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/trainees/delete" class="menu-link">
+                                <div data-i18n="Delete Trainee">Delete Trainee</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Workout -->
+                <li class="menu-item active open">
+                    <a href="#" class="menu-link menu-toggle" id="workoutMenuToggle">
+                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                        <div data-i18n="Workout Settings">Workout</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="/trainees/assign" class="menu-link">
+                                <div data-i18n="Assign Workout to Trainee">Assign Workout to Trainee</div>
+                            </a>
+                        </li>
+                        <li class="menu-item active">
+                            <a href="/trainees/display" class="menu-link">
+                                <div data-i18n="Display Trainee's Workouts">Display Trainee's Workouts</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+        <!-- / Menu -->
+        <!-- Layout container -->
+        <div class="layout-page">
+            <!-- Navbar -->
+            <nav
+                    class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                    id="layout-navbar"
+            >
+                <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                    <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                        <i class="bx bx-menu bx-sm"></i>
+                    </a>
+                </div>
+                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                    <!-- Search -->
+                    <div class="navbar-nav align-items-center">
+                        <div class="nav-item d-flex align-items-center">
+                            <i class="bx bx-search fs-4 lh-0"></i>
+                            <input
+                                    type="text"
+                                    class="form-control border-0 shadow-none"
+                                    placeholder="Search..."
+                                    aria-label="Search..."
+                            />
+                        </div>
+                    </div>
+                    <!-- /Search -->
+                    <ul class="navbar-nav flex-row align-items-center ms-auto">
+                    </ul>
+                </div>
+            </nav>
+            <!-- / Navbar -->
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <h4 class="fw-bold py-3 mb-4">
+                        <span class="text-muted fw-light">Workout /</span> Display Trainee's Workouts
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="nav nav-pills flex-column flex-md-row mb-3">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/trainees/assign"
+                                    ><i class="bx bx-bell me-1"></i> Assign Workout</a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#"><i class="bx bx-user me-1"></i> Display Workouts</a>
+                                </li>
+                            </ul>
+                            <div class="card mb-4">
+                                <tr th:object="${trainee}">
+                                    <h5 class="card-header">Assign Workout to Trainee: <span th:text="${trainee.firstName}"></span></h5>
+                                </tr>
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Workout Name</th>
+                                            <th>Date</th>
+                                            <th>Weight</th>
+                                            <th>Duration</th>
+                                            <th>Calories Burned</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:object="${traineeWorkouts}" th:if="${traineeWorkouts.empty}">
+                                            <td colspan="12"> No Workouts Available</td>
+                                        </tr>
+                                        <tr th:each="traineeWorkout : ${traineeWorkouts}">
+                                            <td><span class="fab fa-angular fa-lg me-3" th:text="${traineeWorkout.workout?.workoutName}"> </span></td>
+                                            <td><span class="fab fa-angular fa-lg me-3" th:text="${traineeWorkout.date}"> </span></td>
+                                            <td><span class="fab fa-angular fa-lg me-3" th:text="${traineeWorkout.weight}"> </span></td>
+                                            <td><span class="fab fa-angular fa-lg me-3" th:text="${traineeWorkout.duration}"> </span></td>
+                                            <td><span class="fab fa-angular fa-lg me-3" th:text="${traineeWorkout.caloriesBurned}"> </span></td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Content -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+</div>
+<!-- / Layout wrapper -->
+
+<style>
+    /* CSS transitions for menu animation */
+    .menu-item {
+        transition: height 0.3s ease;
+        overflow: hidden;
+        height: 40px; /* Set the initial height of the menu item */
+    }
+    .menu-item.menu-item-animating {
+        height: 210px; /* Set the final height of the menu item */
+    }
+</style>
+
+<script>
+    // Get the menu toggle links
+    const traineeMenuToggle = document.querySelector('#traineeMenuToggle');
+    const workoutMenuToggle = document.querySelector('#workoutMenuToggle');
+
+    // Add a click event listener to the trainee menu toggle link
+    traineeMenuToggle.addEventListener('click', function() {
+        // Get the parent menu item for trainee menu
+        const traineeMenuItem = this.closest('.menu-item');
+
+        // Toggle the "open" class on the trainee menu item
+        traineeMenuItem.classList.toggle('open');
+
+        // Toggle the "menu-item-animating" class on the trainee menu item
+        traineeMenuItem.classList.toggle('menu-item-animating');
+
+        // Get the parent menu item for workout menu
+        const workoutMenuItem = workoutMenuToggle.closest('.menu-item');
+
+        // Remove the "open" class from the workout menu item
+        workoutMenuItem.classList.remove('open');
+
+        // Remove the "menu-item-animating" class from the workout menu item
+        workoutMenuItem.classList.remove('menu-item-animating');
+    });
+
+    // Add a click event listener to the workout menu toggle link
+    workoutMenuToggle.addEventListener('click', function() {
+        // Get the parent menu item for workout menu
+        const workoutMenuItem = this.closest('.menu-item');
+
+        // Toggle the "open" class on the workout menu item
+        workoutMenuItem.classList.toggle('open');
+
+        // Toggle the "menu-item-animating" class on the workout menu item
+        workoutMenuItem.classList.toggle('menu-item-animating');
+
+        // Get the parent menu item for trainee menu
+        const traineeMenuItem = traineeMenuToggle.closest('.menu-item');
+
+        // Remove the "open" class from the trainee menu item
+        traineeMenuItem.classList.remove('open');
+
+        // Remove the "menu-item-animating" class from the trainee menu item
+        traineeMenuItem.classList.remove('menu-item-animating');
+    });
+</script>
+
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script type="text/javascript" src="@{/vendor/libs/jquery/jquery.js}"></script>
+<script type="text/javascript" src="@{/vendor/libs/popper/popper.js}"></script>
+<script type="text/javascript" src="@{/vendor/js/bootstrap.js}"></script>
+<script type="text/javascript" src="@{/vendor/libs/perfect-scrollbar/perfect-scrollbar.js}"></script>
+<script type="text/javascript" src="@{/vendor/js/menu.js}"></script>
+<!-- endbuild -->
+<!-- Vendors JS -->
+<script type="text/javascript" src="@{/vendor/libs/apex-charts/apexcharts.js}"></script>
+<!-- Main JS -->
+<script type="text/javascript" src="@{/js/main.js}"></script>
+<!-- Page JS -->
+<script type="text/javascript" src="@{/vendor/libs/apex-charts/apexcharts.js}"></script>
+<!-- Place this tag in your head or just before your close body tag. -->
+<!--suppress JSUnresolvedLibraryURL -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 </body>
 </html>
