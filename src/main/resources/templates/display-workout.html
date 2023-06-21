@@ -41,7 +41,7 @@
         <!-- Menu -->
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
-                <a href="landing-page.html" class="app-brand-link">
+                <a th:href="@{/}" class="app-brand-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-circle-square" viewbox="0 0 17.5 17.5">
                         <path d="M0 6a6 6 0 1 1 12 0A6 6 0 0 1 0 6z" />
                         <path d="M12.93 5h1.57a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1.57a6.953 6.953 0 0 1-1-.22v1.79A1.5 1.5 0 0 0 5.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 4h-1.79c.097.324.17.658.22 1z" />
@@ -54,15 +54,8 @@
             </div>
             <div class="menu-inner-shadow"></div>
             <ul class="menu-inner py-1">
-                <!-- Dashboard -->
-                <li class="menu-item">
-                    <a href="#" th:href="@{/}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                        <div data-i18n="Dashboard">Dashboard</div>
-                    </a>
-                </li>
                 <!-- Trainee -->
-                <li class="menu-item">
+                <li class="menu-item open">
                     <a href="#" class="menu-link menu-toggle" id="traineeMenuToggle">
                         <i class="menu-icon tf-icons bx bx-dock-top"></i>
                         <div data-i18n="Trainee Settings">Trainee</div>
@@ -207,67 +200,6 @@
     <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
-
-<style>
-    /* CSS transitions for menu animation */
-    .menu-item {
-        transition: height 0.3s ease;
-        overflow: hidden;
-        height: 40px; /* Set the initial height of the menu item */
-    }
-    .menu-item.menu-item-animating {
-        height: 210px; /* Set the final height of the menu item */
-    }
-</style>
-
-<script>
-    // Get the menu toggle links
-    const traineeMenuToggle = document.querySelector('#traineeMenuToggle');
-    const workoutMenuToggle = document.querySelector('#workoutMenuToggle');
-
-    // Add a click event listener to the trainee menu toggle link
-    traineeMenuToggle.addEventListener('click', function() {
-        // Get the parent menu item for trainee menu
-        const traineeMenuItem = this.closest('.menu-item');
-
-        // Toggle the "open" class on the trainee menu item
-        traineeMenuItem.classList.toggle('open');
-
-        // Toggle the "menu-item-animating" class on the trainee menu item
-        traineeMenuItem.classList.toggle('menu-item-animating');
-
-        // Get the parent menu item for workout menu
-        const workoutMenuItem = workoutMenuToggle.closest('.menu-item');
-
-        // Remove the "open" class from the workout menu item
-        workoutMenuItem.classList.remove('open');
-
-        // Remove the "menu-item-animating" class from the workout menu item
-        workoutMenuItem.classList.remove('menu-item-animating');
-    });
-
-    // Add a click event listener to the workout menu toggle link
-    workoutMenuToggle.addEventListener('click', function() {
-        // Get the parent menu item for workout menu
-        const workoutMenuItem = this.closest('.menu-item');
-
-        // Toggle the "open" class on the workout menu item
-        workoutMenuItem.classList.toggle('open');
-
-        // Toggle the "menu-item-animating" class on the workout menu item
-        workoutMenuItem.classList.toggle('menu-item-animating');
-
-        // Get the parent menu item for trainee menu
-        const traineeMenuItem = traineeMenuToggle.closest('.menu-item');
-
-        // Remove the "open" class from the trainee menu item
-        traineeMenuItem.classList.remove('open');
-
-        // Remove the "menu-item-animating" class from the trainee menu item
-        traineeMenuItem.classList.remove('menu-item-animating');
-    });
-</script>
-
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->

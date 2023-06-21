@@ -78,7 +78,7 @@ public class TraineeController {
         if (result.hasErrors()) {
             trainee.setTraineeId((int) id);
             //return html index
-            return "landing-page";
+            return "index";
         }
 
         model.addAttribute("trainees", traineeRepository.findAll());
@@ -129,7 +129,7 @@ public class TraineeController {
                                      BindingResult result, Model model) {
         if (result.hasErrors()) {
             traineeWorkout.setId();
-            return "index";
+            return "dashboard";
         }
 
         Trainee trainee = traineeRepository.findTraineeById((int) id1);
@@ -138,7 +138,7 @@ public class TraineeController {
         TraineeWorkout traineeWorkout1 = new TraineeWorkout(trainee,workout,date,weight,duration,caloriesBurned);
         traineeWorkoutRepository.save(traineeWorkout1);
 
-        return "index";
+        return "dashboard";
     }
                            
     @GetMapping("display")
