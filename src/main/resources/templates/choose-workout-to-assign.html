@@ -91,12 +91,12 @@
           </a>
           <ul class="menu-sub">
             <li class="menu-item active">
-              <a href="/trainees/assign" class="menu-link">
+              <a href="/workouts/assign" class="menu-link">
                 <div data-i18n="Assign Workout to Trainee">Assign Workout</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/trainees/display" class="menu-link">
+              <a href="/workouts/display" class="menu-link">
                 <div data-i18n="Display Trainee's Workouts">Display Workouts</div>
               </a>
             </li>
@@ -150,7 +150,7 @@
                   <a class="nav-link active" href="#"><i class="bx bx-user me-1"></i> Assign Workout to Trainee</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/trainees/display"
+                  <a class="nav-link" href="/workouts/display"
                   ><i class="bx bx-bell me-1"></i> Display Trainee's Workouts</a
                   >
                 </li>
@@ -175,7 +175,7 @@
                       <td><span class="fab fa-angular fa-lg me-3" th:text="${trainee.traineeId}"> </span></td>
                       <td><span class="fab fa-angular fa-lg me-3" th:text="${trainee.firstName}"> </span></td>
                       <td><span class="fab fa-angular fa-lg me-3" th:text="${trainee.lastName}"> </span></td>
-                      <td><a th:href="@{/trainees/assign/{id}(id=${trainee.traineeId})}"
+                      <td><a th:href="@{/workouts/assign/{id}(id=${trainee.traineeId})}"
                              class="btn btn-primary">Assign<i class="fas fa-user-tie"></i></a></td>
                     </tr>
 

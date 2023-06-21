@@ -91,12 +91,12 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item active">
-                            <a href="/trainees/assign" class="menu-link">
+                            <a href="/workouts/assign" class="menu-link">
                                 <div data-i18n="Assign Workout to Trainee">Assign Workout to Trainee</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/trainees/display" class="menu-link">
+                            <a href="/workouts/display" class="menu-link">
                                 <div data-i18n="Display Trainee's Workouts">Display Trainee's Workouts</div>
                             </a>
                         </li>
@@ -150,7 +150,7 @@
                                     <a class="nav-link active" href="#"><i class="bx bx-user me-1"></i> Assign Workout</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/trainees/display"
+                                    <a class="nav-link" href="/workouts/display"
                                     ><i class="bx bx-bell me-1"></i> Display Workouts</a
                                     >
                                 </li>
@@ -160,7 +160,7 @@
                                     <h5 class="card-header">Assign Workout to Trainee: <span th:text="${trainee.firstName}"></span></h5>
                                 </tr>
                                 <div class="card-body">
-                                    <form id="formAccountSettings" action="#" th:action="@{/trainees/traineeworkout/{traineeid}(traineeid=${trainee.traineeId})}"
+                                    <form id="formAccountSettings" action="#" th:action="@{/workouts/traineeworkout/{traineeid}(traineeid=${trainee.traineeId})}"
                                           th:object="${traineeWorkout}" th:method="post">
 
                                         <div class="form-floating">
