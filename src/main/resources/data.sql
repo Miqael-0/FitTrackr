@@ -29,3 +29,7 @@ WHERE trainee_id = 2;
 
 UPDATE trainee SET goal_id = 3
 WHERE trainee_id = 3;
+
+
+
+
